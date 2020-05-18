@@ -11,6 +11,7 @@ Yocto on RPi4, used to run my various SDR projects.
   - https://lancesimms.com/RaspberryPi/HackingRaspberryPi4WithYocto_Part7.html
   - disable bluetooth in device tree overlay
   - extra stuff added to files in meta-rpilinux/recipes-bsp/bootfiles/bcm2835-bootfiles.bbappend
+  - needs to have `kernel=u-boot.bin` instead of `kernel=kernel_rpilinux.img`
 * Disable ipv6 in `cmdline.txt` or in the recipes
 * Do the network and fstab recipes
   - add `meta-openembedded/meta-networking` to layers
