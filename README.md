@@ -10,6 +10,7 @@ Yocto on RPi4, used to run my various SDR projects.
 * Fixup the sd/boot files generated, per part7
   - https://lancesimms.com/RaspberryPi/HackingRaspberryPi4WithYocto_Part7.html
   - disable bluetooth in device tree overlay
+  - extra stuff added to files in meta-rpilinux/recipes-bsp/bootfiles/bcm2835-bootfiles.bbappend
 * Disable ipv6 in `cmdline.txt` or in the recipes
 * Do the network and fstab recipes
   - add `meta-openembedded/meta-networking` to layers
@@ -78,17 +79,29 @@ bitbake -c cleanall rpilinux-image
 bitbake rpilinux-image
 ```
 
+## Deploy to SD Card
+
+Find the image files:
+
+```bash
+bitbake -e rpilinux-image | grep ^DEPLOY_DIR_IMAGE
+```
+
 ## SD Card Files
 
 TODO - recipe(s) should set this stuff up, maybe just list what's required here?
 
 changes for U-Boot things
 
+Custom changes to `config.txt` and `cmdline.txt` happen in
+the [meta-rpilinux recipe](meta-rpilinux/recipes-bsp/bootfiles/bcm2835-bootfiles.bbappend).
+
 Files:
 
 ```bash
 /card
 ├── config.txt
+├── cmdline.txt
 ├── fixup4.dat
 ├── start4.elf
 ├── u-boot.bin
