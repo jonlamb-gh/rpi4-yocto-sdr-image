@@ -19,6 +19,8 @@ do_after_deploy() {
     echo 'kernel=kernel_rpilinux.img' >> ${DEPLOY_DIR_IMAGE}/${BCM2711_DIR}/config.txt
     echo 'arm_64bit=1' >> ${DEPLOY_DIR_IMAGE}/${BCM2711_DIR}/config.txt
     echo 'enable_uart=1' >> ${DEPLOY_DIR_IMAGE}/${BCM2711_DIR}/config.txt
+    echo 'dtoverlay=disable-bt' >> ${DEPLOY_DIR_IMAGE}/${BCM2711_DIR}/config.txt
+    echo 'dtoverlay=disable-wifi' >> ${DEPLOY_DIR_IMAGE}/${BCM2711_DIR}/config.txt
 
     # Make a simple cmdline.txt
     touch ${DEPLOY_DIR_IMAGE}/${BCM2711_DIR}/cmdline.txt
