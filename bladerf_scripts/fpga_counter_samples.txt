@@ -1,0 +1,24 @@
+# Sets up the FPGA 32-bit monotonic counter to be placed in the samples
+# to check for dropped samples
+
+set samplerate rx 4M
+
+echo "Current GPIO"
+print gpio
+
+echo "Configure GPIO"
+set gpio 0x257
+
+echo "New GPIO"
+print gpio
+
+echo "Rx config, file=/dev/shm/samples_4msps.bin"
+rx config file=/dev/shm/samples_4msps.bin n=10M
+
+echo "Starting"
+rx start
+
+echo "Waiting"
+rx wait
+
+echo "Done"

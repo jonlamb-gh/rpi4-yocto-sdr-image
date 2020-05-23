@@ -1,0 +1,14 @@
+set frequency rx1 89.5M
+set samplerate rx1 2M
+set bandwidth rx1 1.5M
+
+echo "Rx config, file=/dev/shm/samples_2msps.bin"
+rx config file=/dev/shm/samples_2msps.bin n=10M
+
+echo "Starting"
+rx start
+
+echo "Waiting"
+rx wait
+
+echo "Done"
