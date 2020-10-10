@@ -9,8 +9,7 @@ Yocto on RPi4, used to run my various SDR projects.
   - `~/.config/Nuand/bladeRF/hostedxA4.rbf`
   - `/usr/share/Nuand/bladeRF/hostedxA4.rbf`
   - https://github.com/Nuand/bladeRF/wiki/FPGA-Autoloading#linux-or-osx
-* Recipe to setup custom `systemd` user level (or root) unit file
-  - Runs the SDR stuff, either scripts + blade-cli, or my own thing in Rust
+* Recipe to install the `systemd` unit files
 * Rust related
   - https://crates.io/crates/cargo-bitbake
   - https://pagefault.blog/2018/07/04/embedded-development-with-yocto-and-rust/
@@ -20,7 +19,8 @@ Yocto on RPi4, used to run my various SDR projects.
 ## Recipes & Customizations
 
 * Custom `config.txt` and `cmdline.txt` in [bcm2835-bootfiles](meta-rpilinux/recipes-bsp/bootfiles/bcm2835-bootfiles.bbappend)
-* [bladerf](meta-rpilinux/recipes-bladerf/bladerf/bladerf_2019.07.bb)
+* [BladeRF](meta-rpilinux/recipes-bladerf/bladerf/bladerf_2019.07.bb)
+* [RTL-SDR](meta-rpilinux/recipes-rtl-sdr/rtl-sdr/rtl-sdr.bb)
 
 ## Dependencies
 
@@ -156,6 +156,7 @@ Number of gaps:0
   - Can open the binary sample format natively
 * [sdr-heatmap](https://crates.io/crates/sdr-heatmap)
 * [rtl-power](http://kmkeen.com/rtl-power/2014-10-18-14-49-57-361.html)
+* [GNSS SDR](https://gnss-sdr.org/quick-start-guide/)
 
 ## Links
 
