@@ -36,6 +36,9 @@ sudo apt install gawk wget git-core diffstat unzip texinfo gcc-multilib build-es
 ./setup
 
 ./build
+
+# rootfs:
+# out/tmp/work/raspberrypi4_64-poky-linux/rpilinux-image/1.0-r0/rootfs/
 ```
 
 ### Clean and Re-run
