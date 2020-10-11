@@ -56,16 +56,53 @@ Find the image files:
 bitbake -e rpilinux-image | grep ^DEPLOY_DIR_IMAGE
 ```
 
+```bash
+# dtb
+cd /path/to/build/tmp/deploy/images/raspberrypi4-64/
+cp bcm2711-rpi-4-b.dtb /media/card/BOOT/
+
+# kernel
+cp Image /media/card/BOOT/kernel_rpilinux.img
+
+# rootfs
+cd /media/card/ROOT/
+sudo tar -xjf /path/tobuild/tmp/deploy/images/raspberrypi4-64/rpilinux-image-raspberrypi4-64.tar.bz2
+
+# firmware
+cd /path/to/build/tmp/deploy/images/raspberrypi4-64/bcm2711-bootfiles
+cp * /media/card/BOOT/
+```
+
 ## SD Card Files
 
-Files (TODO):
+Files:
 
 ```bash
-/card
-├── config.txt
+/mnt/card/BOOT/
+├── bcm2711-rpi-4-b.dtb
+├── bcm2835-bootfiles-20200501.stamp
+├── bootcode.bin
 ├── cmdline.txt
+├── config.txt
+├── fixup4cd.dat
 ├── fixup4.dat
-└── start4.elf
+├── fixup4db.dat
+├── fixup4x.dat
+├── fixup_cd.dat
+├── fixup.dat
+├── fixup_db.dat
+├── fixup_x.dat
+├── kernel8.img
+├── kernel_rpilinux.img
+├── overlays
+├── start4cd.elf
+├── start4db.elf
+├── start4.elf
+├── start4x.elf
+├── start_cd.elf
+├── start_db.elf
+├── start.elf
+└── start_x.elf
 ```
 
 `config.txt`:
@@ -81,7 +118,15 @@ dtoverlay=disable-wifi
 `cmdline.txt`:
 
 ```bash
-TODO
+dwc_otg.lpm_enable=0 console=serial0,115200 console=ttyS0 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait
+```
+
+rootfs `/etc/fstab`:
+
+```text
+proc                    /proc           proc    defaults          0       0
+/dev/mmcblk0p1          /boot           vfat    defaults          0       2
+/dev/mmcblo0p2          /               ext4    defaults,noatime  0       1
 ```
 
 ## Live View with baudline
