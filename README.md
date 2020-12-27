@@ -15,6 +15,31 @@ Yocto on RPi4, used to run my various SDR projects.
   - https://pagefault.blog/2018/07/04/embedded-development-with-yocto-and-rust/
   - https://github.com/meta-rust/meta-rust
   - https://github.com/rust-embedded/meta-rust-bin
+* Buzzer GPIO on pin 32 / GPIO 12 (PWM0)
+  - add https://github.com/WiringPi/WiringPi recipe
+  - or this https://github.com/RPi-Distro/raspi-gpio
+  - `rpi-gpio mode 12 pwm`
+
+```text
+Please increase your allowed usbfs buffer size with the following command:
+echo 0 > /sys/module/usbcore/parameters/usbfs_memory_mb
+
+# https://www.raspberrypi.org/forums/viewtopic.php?t=275199
+echo 0 > /sys/class/pwm/pwmchip0/export
+echo 50000 > /sys/class/pwm/pwmchip0/pwm0/period
+echo 25000 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
+echo 1 > /sys/class/pwm/pwmchip0/pwm0/enable
+```
+
+```toml
+# /etc/gpio.toml
+# echo 12 > /sys/class/gpio/export
+# 2K-5K square wave PWM
+[[pins]]
+num = 12
+names = ["buzzer"]
+direction = "out"
+```
 
 ## Recipes & Customizations
 

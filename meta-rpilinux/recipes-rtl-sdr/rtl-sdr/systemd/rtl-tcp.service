@@ -1,0 +1,9 @@
+[Unit]
+Description=rtl_tcp service
+
+[Service]
+Type=simple
+ExecStart=rtl_tcp -a 192.168.1.xyz
+
+[Install]
+WantedBy=default.target
